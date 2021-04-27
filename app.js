@@ -1,13 +1,12 @@
 const express = require("express");
 const app = express();
-
-const itemsRoute = require("./routes/items");
+const itemsRoutes = require("./routes/items");
 const AppError = require("./appError");
 
 app.use(express.json());
-app.use("/items", itemsRoute);
+app.use("/items", itemsRoutes);
 
-app.use((req, res, next) => {
+app.use(function (req, res, next) {
 	return new AppError("Not Found", 404);
 });
 
